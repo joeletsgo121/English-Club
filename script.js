@@ -358,18 +358,68 @@ document.getElementById("loginBtn").addEventListener("click", () => {
     "Login",
     `
       <form id="loginForm">
+        
         <div class="form-group">
           <label>Email</label>
-          <input type="email" required placeholder="you@example.com">
+          <input
+            id="loginEmail"
+            type="email"
+            required
+            placeholder="you@example.com"
+          >
         </div>
+
         <div class="form-group">
           <label>Password</label>
-          <input type="password" required placeholder="••••••••">
+          <input
+            id="loginPassword"
+            type="password"
+            required
+            placeholder="Your password"
+          >
         </div>
-        <button class="modal-submit">Login</button>
+
+        <button class="modal-submit" type="submit">
+          Login
+        </button>
+
+        <p id="loginMessage"
+           style="margin-top:12px;font-size:13px;">
+        </p>
+
       </form>
     `
   );
+
+  document.getElementById("loginForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const email = document.getElementById("loginEmail").value.trim();
+    const password = document.getElementById("loginPassword").value;
+
+    const message = document.getElementById("loginMessage");
+
+    message.textContent = "Logging in...";
+
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password
+      });
+
+    if (error) {
+      message.textContent = error.message;
+      return;
+    }
+
+    message.textContent = "Login successful!";
+
+    closeModal();
+
+    updateAuthUI();
+
+    alert("Welcome back!");
+  });
 });
 
 document.getElementById("registerBtn").addEventListener("click", () => {
