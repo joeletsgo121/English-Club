@@ -1,3 +1,17 @@
+// ===============================
+// SUPABASE CONFIGURATION
+// ===============================
+
+const SUPABASE_URL = "https://dubqyawbaoexjgbyyxye.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_qq5gKzEu3r99r77Vq6JtrA_mFShSJuZ";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
 const rooms = [
   {
     id: 1,
