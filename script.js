@@ -932,6 +932,20 @@ async function updateAuthUI() {
               Welcome to English Club!
             </p>
 
+              loginBtn.onclick = () => {
+  openModal("My Account", `
+    <div class="modal-text">
+      <h3>👤 ${escapeHTML(name)}</h3>
+      <p style="margin-top:10px;">${escapeHTML(user.email || "")}</p>
+      <p style="margin-top:10px;">Welcome to English Club!</p>
+
+      <button class="modal-submit" id="editProfileBtn" style="margin-top:15px;">
+        Edit Profile
+      </button>
+    </div>
+  `);
+};
+
             <button
               class="modal-submit"
               id="editProfileBtn"
