@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="English Club - Language Practice Community">
+  <title>English Club | Language Practice Community</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="English Club Home">
+      <span class="brand-icon">◒</span>
+      <span>English Club</span>
+    </a>
+
+    <div class="header-actions">
+      <button class="ghost-btn" id="loginBtn">Login</button>
+      <button class="primary-btn small" id="registerBtn">Register</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Language Practice Community</h1>
+      <p>Practice English, meet friends, and improve together.</p>
+    </section>
+
+    <section class="action-row">
+      <button class="action-btn create" id="createRoomBtn">
+        <span>＋</span> Create a new group
+      </button>
+      <button class="action-btn coffee" id="supportBtn">
+        <span>☕</span> Support us
+      </button>
+      <button class="action-btn" data-modal="privacy">♢ Privacy Policy</button>
+      <button class="action-btn" data-modal="contact">◉ Contact Us</button>
+      <button class="action-btn" data-modal="about">ⓘ About Us</button>
+    </section>
+
+    <section class="search-area">
+      <div class="search-box">
+        <button class="settings-btn" id="settingsBtn" title="Search settings">⚙</button>
+        <input id="searchInput" type="search" placeholder="Search by Topic & User" autocomplete="off">
+        <button class="search-btn" id="searchBtn" title="Search">⌕</button>
+      </div>
+
+      <div class="filters" id="filters">
+        <button class="filter expand" id="expandBtn">⌄ Expand</button>
+        <button class="filter active" data-language="All">All (<span id="allCount">0</span>)</button>
+        <button class="filter" data-language="English">English (<span>175</span>)</button>
+        <button class="filter" data-language="Hindi">Hindi (<span>42</span>)</button>
+        <button class="filter" data-language="Bengali">Bengali (<span>22</span>)</button>
+        <button class="filter" data-language="Urdu">Urdu (<span>19</span>)</button>
+        <button class="filter" data-language="Vietnamese">Vietnamese (<span>19</span>)</button>
+        <button class="filter" data-language="Indonesian">Indonesian (<span>19</span>)</button>
+        <button class="filter" data-language="Arabic">Arabic (<span>12</span>)</button>
+        <button class="filter" data-language="Telugu">Telugu (<span>10</span>)</button>
+        <button class="filter" data-language="German">German (<span>4</span>)</button>
+        <button class="filter" data-language="Nepali">Nepali (<span>3</span>)</button>
+      </div>
+    </section>
+
+    <section class="room-section">
+      <div class="section-heading">
+        <div>
+          <h2>Practice Rooms</h2>
+          <p id="resultText">Available rooms</p>
+        </div>
+        <button class="sort-btn" id="sortBtn">Sort: Active ▾</button>
+      </div>
+
+      <div class="room-grid" id="roomGrid"></div>
+
+      <div class="empty-state hidden" id="emptyState">
+        <div class="empty-icon">⌕</div>
+        <h3>No rooms found</h3>
+        <p>Try another topic, user, or language.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 English Club</span>
+    <span>Practice • Improve • Grow</span>
+  </footer>
+
+  <!-- Modal -->
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose">×</button>
+      <h2 id="modalTitle">Create a new group</h2>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
