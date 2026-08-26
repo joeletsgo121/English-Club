@@ -427,22 +427,99 @@ document.getElementById("registerBtn").addEventListener("click", () => {
     "Create your account",
     `
       <form id="registerForm">
+
         <div class="form-group">
           <label>Your name</label>
-          <input required placeholder="Joe">
+          <input
+            id="registerName"
+            required
+            placeholder="Joe"
+          >
         </div>
+
         <div class="form-group">
           <label>Email</label>
-          <input type="email" required placeholder="you@example.com">
+          <input
+            id="registerEmail"
+            type="email"
+            required
+            placeholder="you@example.com"
+          >
         </div>
+
         <div class="form-group">
           <label>Password</label>
-          <input type="password" required placeholder="Create a password">
+          <input
+            id="registerPassword"
+            type="password"
+            minlength="6"
+            required
+            placeholder="Create a password"
+          >
         </div>
-        <button class="modal-submit">Create Account</button>
+
+        <button class="modal-submit" type="submit">
+          Create Account
+        </button>
+
+        <p id="registerMessage"
+           style="margin-top:12px;font-size:13px;">
+        </p>
+
       </form>
     `
   );
+
+  document.getElementById("registerForm").addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const name =
+      document.getElementById("registerName").value.trim();
+
+    const email =
+      document.getElementById("registerEmail").value.trim();
+
+    const password =
+      document.getElementById("registerPassword").value;
+
+    const message =
+      document.getElementById("registerMessage");
+
+    message.textContent = "Creating your account...";
+
+    const { data, error } =
+      await supabaseClient.auth.signUp({
+        email: email,
+        password: password,
+        options: {
+          data: {
+            full_name: name
+          },
+          emailRedirectTo:
+            "https://joeletsgo121.github.io/English-Club/"
+        }
+      });
+
+    if (error) {
+      message.textContent = error.message;
+      return;
+    }
+
+    message.textContent =
+      "Account created successfully!";
+
+    setTimeout(() => {
+      closeModal();
+
+      if (data.session) {
+        updateAuthUI();
+      } else {
+        alert(
+          "Account created! Please check your email to confirm your account."
+        );
+      }
+    }, 800);
+  });
 });
 
 document.getElementById("settingsBtn").addEventListener("click", () => {
